@@ -1,0 +1,15 @@
+package com.validation.service.impl;
+
+import com.validation.dto.PaymentRequest;
+import com.validation.service.payment.PaymentService;
+import org.springframework.stereotype.Service;
+
+@Service("AmazonPay")
+public class AmazonPay implements PaymentService {
+
+    @Override
+    public String pay(PaymentRequest request) {
+        return request.getAmount() + " paid successfully using " + request.getPaymentMethod();
+    }
+
+}

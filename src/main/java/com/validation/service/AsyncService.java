@@ -7,12 +7,12 @@ import java.util.concurrent.CompletableFuture;
 
 @Service
 public class AsyncService {
-    @Async
+    @Async("AsyncTaskExecutor")
     public CompletableFuture<String> performAsyncTask() {
-        System.out.println("Async completable future task started...!!!");
+        System.out.println("Async completable future task started...ThreadName: " + Thread.currentThread().getName());
         try {
             Thread.sleep(8000); // Simulate a long-running operation
-            System.out.println("In-Async service");
+            System.out.println("In-Async service: ThreadName - " + Thread.currentThread().getName());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -20,7 +20,7 @@ public class AsyncService {
         return CompletableFuture.completedFuture("Task Completed!");
     }
 
-    @Async
+    @Async("AsyncTaskExecutor")
     public void performAsyncTask(String data) {
         // Simulate a long-running task
         System.out.println("Async task started...!!!");

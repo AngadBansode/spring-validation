@@ -15,7 +15,8 @@ public class AsyncController {
 
     @GetMapping("/async")
     public String getAsyncResponse() {
-         asyncService.performAsyncTask();
+      var result=   asyncService.performAsyncTask();
+        System.out.println("Result: " + result.join() + "ThreadName: " + Thread.currentThread().getName());
         return "async with completable-future";
     }
 
